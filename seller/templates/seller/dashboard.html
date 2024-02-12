@@ -1,0 +1,26 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{%  static 'css/dashboard.css' %}">
+</head>
+<body style="background-image: url('https://images.rawpixel.com/image_500/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjU0NmJhdGNoMy1teW50LTM0LWJhZGdld2F0ZXJjb2xvcl8xLmpwZw.jpg');">
+    <div class="container">
+        <div class="navbar">
+            <table>
+            <tr>
+          <td><a href="{% url 'seller:addproduct' %}">Add product</a></td>
+          <td><a href="{% url 'seller:viewpdt' %}">View Products</a></td>
+
+
+
+            </tr>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>

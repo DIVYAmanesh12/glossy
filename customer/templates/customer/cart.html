@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+    
+    body{
+    background: linear-gradient(110deg, #BBDEFB 60%,#42A5F5  60%);                        
+}
+        
+.shop{
+    font-size: 10px;
+}
+
+.space{
+    letter-spacing: 0.8px !important;
+}
+
+.second a:hover {
+    color: rgb(92, 92, 92) ;
+}
+
+.active-2 {
+    color: rgb(92, 92, 92) 
+}
+
+
+.breadcrumb>li+li:before {
+    content: "" !important
+}
+
+.breadcrumb {
+    padding: 0px;
+    font-size: 10px;
+    color: #aaa !important;
+}
+
+.first {
+    background-color: white ;
+}
+
+a {
+    text-decoration: none !important;
+    color: #aaa ;
+}
+
+.btn-lg,.form-control-sm:focus,
+.form-control-sm:active,
+a:focus,a:active {
+    outline: none !important;
+    box-shadow: none !important
+}
+
+.form-control-sm:focus{
+    border:1.5px solid #4bb8a9 ; 
+}
+
+.btn-group-lg>.btn, .btn-lg {
+    padding: .5rem 0.1rem;
+    font-size: 1rem;
+    border-radius: 0;
+    color: white !important;
+    background-color: #4bb8a9;
+    height: 2.8rem !important;
+    border-radius: 0.2rem !important;
+}
+
+.btn-group-lg>.btn:hover, .btn-lg:hover {
+    background-color: #26A69A;
+}
+
+.btn-outline-primary{
+    background-color: #fff !important;
+    color:#4bb8a9 !important;
+    border-radius: 0.2rem !important;   
+    border:1px solid #4bb8a9;
+}
+
+.btn-outline-primary:hover{
+    background-color:#4bb8a9  !important;
+    color:#fff !important;
+    border:1px solid #4bb8a9;
+}
+
+.card-2{
+    margin-top: 40px !important;
+}
+
+.card-header{
+    background-color: #fff;
+    border-bottom:0px solid #aaaa !important;
+}
+
+p{
+    font-size: 13px ;
+}
+        
+.small{
+    font-size: 9px !important;
+}
+
+.form-control-sm {
+    height: calc(2.2em + .5rem + 2px);
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: 0;   
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.boxed {
+    padding: 0px 8px 0 8px ;
+    background-color: #4bb8a9;
+    color: white;
+}
+
+.boxed-1{
+    padding: 0px 8px 0 8px ;
+    color: black !important;
+    border: 1px solid #aaaa;
+}
+
+.bell{
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media (max-width: 767px) {
+    .breadcrumb-item+.breadcrumb-item {
+        padding-left: 0
+    }
+}
+      
+      
+    
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">GLOSSYFACE</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">ABOUT US</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      ACCONT
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">LOGIN</a></li>
+                      <li><a class="dropdown-item" href="#">SIGNUP</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">SELLER SIGNUP</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" aria-disabled="true"></a>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+        <!-- {% for i in cart_items %}
+         <div class="row">
+          <div class="col-2">  
+         </div>
+          <div class="col-4">
+            <div class="card mb-3" >
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="{{i.product.image.url}}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">Price :{{i.product.price}}</h5>
+                    <p class="card-text">Quantity :{{i.quantity}}</p>
+                    <p class="card-text">
+                      <form action="{% url 'customer:remove_from_cart' i.product.id %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" style="color: burlywood; border-radius: 10px;">delete</button>
+                  </form>
+                </p>
+              
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+                
+           
+        </div>
+        {% endfor %}
+        
+        
+            <div class="total-price"></div>
+        <table>
+            <tr>
+                <td>total</td>
+                <td>{{total_price}}</td>
+            </tr>
+            {% if cart_items  %}
+            <tr>
+              <td><a href="{%  url 'customer:payment' %}">Buy Now</a></td>
+            </tr>
+            {% endif %}
+
+
+
+            </table> -->
+            <div class=" container-fluid my-5 ">
+              <div class="row justify-content-center ">
+                  <div class="col-xl-10">
+                      <div class="card shadow-lg ">
+                          <div class="row p-2 mt-3 justify-content-between mx-sm-2">
+                              <div class="col">
+                                  <p class="text-muted space mb-0 shop"> </p> 
+                                  <p class="text-muted space mb-0 shop"></p>   
+                              </div>
+                              <div class="col">
+                                  <div class="row justify-content-start ">
+                                      <div class="col">
+                                          <!-- <img class="irc_mi img-fluid cursor-pointer " src=""  width="70" height="70" > -->
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="col-auto">
+                                  <img class="irc_mi img-fluid bell" src="https://i.imgur.com/uSHMClk.jpg" width="30" height="30"  >
+                              </div>
+                          </div>
+                          <div class="row  mx-auto justify-content-center text-center">
+                              <div class="col-12 mt-3 ">
+                                
+                              </div>
+                          </div>
+                      
+                          <div class="row justify-content-around">
+                             
+                            
+                              <div class="col-md-5">
+                                  <div class="card border-0 ">
+                                      <div class="card-header card-2">
+                                          <p class="card-text text-muted mt-md-4  mb-2 space">YOUR CART <span class=" small text-muted ml-2 cursor-pointer"></span> </p>
+                                          <hr class="my-2">
+                                      </div>
+                                      <div class="card-body pt-0">
+                                        {% for i in cart_items %}
+                                          <div class="row  justify-content-between">
+                                              <div class="col-auto col-md-7">
+                                                  <div class="media flex-column flex-sm-row">
+                                                      <img class=" img-fluid" src="{{i.product.image.url}}" width="62" height="62">
+                                                      <div class="media-body  my-auto">
+                                                          <div class="row ">
+                                                              <div class="col-auto"><p class="mb-0"><b>{{i.product.name}}</b></p><small class="text-muted"></small></div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed-1">{{i.quantity}}</p></div>
+                                              <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b> {{i.product.price}} Rs</b></p></div>
+                                              <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>  <form action="{% url 'customer:remove_from_cart' i.product.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" style="color: burlywood; border-radius: 10px; margin-left: 250px; border-color:burlywood ;">delete</button>
+                                            </form></b></p></div>
+                                          </div>
+
+                                          <hr class="my-2">
+                                         {% endfor %}
+        
+                                          <div class="row ">
+                                              <div class="col">
+                                                 
+                                                
+                                                  <div class="row justify-content-between">
+                                                      <div class="col-4"><p ><b>Total</b></p></div>
+                                                      <div class="flex-sm-col col-auto"><p  class="mb-1"><b>{{total_price}} RS</b></p> </div>
+                                                  </div><hr class="my-0">
+                                              </div>
+                                          </div>
+                                          <div class="row mb-5 mt-4 ">
+                                              <div class="col-md-7 col-lg-6 mx-auto"><button type="button" class="btn btn-block btn-outline-primary btn-lg"><a href="{%  url 'customer:payment'  %}">Pay Now</a></button></div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .container{
+            background-color: darksalmon;
+        }
+        .col-4{
+          margin-top: 45px;
+        }
+        .hr{
+          
+          
+          position: absolute;
+          margin-left: 150px; 
+          background-color: rgb(37, 0, 139);
+          border-radius: 10px;
+          color: white;
+          padding: 8px;
+          left: 0px;
+          bottom: 15px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">GLOSSYFACE</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{%  url 'customer:home' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'customer:aboutus' %}">About us</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Account
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="{%  url 'customer:login' %}">Login</a></li>
+                      <li><a class="dropdown-item" href="{%  url 'customer:signup' %}">Signup</a></li>
+                      <li><a class="dropdown-item" href="{%  url 'customer:logout' %}">Logout</a></li>
+  
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{%  url 'seller:s_login' %}">Seller Login</a></li>
+
+                    </ul>
+                  </li>
+                 
+                  
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="row">
+        {% for i in products %}
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{{i.image.url}}" height="290px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{i.name}}</h5>
+              <p class="card-text">{{i.price}}</p>
+              
+              <form action="{% url 'customer:add_to_cart' i.id %}" method="post">
+                {%  csrf_token %}
+                <div class="quantity" style="display: none;">
+                  <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+                </div>
+                <button type="submit" class="btn btn-primary" >Add to Cart</button>
+                
+
+              </form>
+              <form action="{% url 'customer:add_to_wishlist' i.id %}" method="post">
+                {%  csrf_token %}
+                <div class="quantity" style="display: none;">
+                  <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+                </div>
+                <button type="submit" class="hr" >Wishlist</button>
+                
+
+
+              </form>
+            </div>
+          </div>
+        </div>
+        {%  endfor %}
+        <!-- <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{%  static 'image/moi2.jpg' %}" height="290px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">MOISTURIZER</h5>
+              <p class="card-text"></p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{%  static 'image/moi3.jpg' %}" height="290px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">MOISTURIZER</h5>
+              <p class="card-text"></p>
+              <a href="#" class="btn btn-primary">Buy Now</a>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/moi4.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">MOISTURIZER</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/moi5.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">MOISTURIZER</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/sr.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">SERUM</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/sr2.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">SERUM</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/sr6.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">SERUM</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/clenser1.jpg' %}" height="290px"  class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">CLENSER</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/cl1.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">CLENSER</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/cl2.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">CLENSER</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="card" style="width: 18rem;">
+              <img src="{%  static 'image/cl3.jpg' %}" height="290px" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">CLENSER</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary">Buy Now</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+ -->
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

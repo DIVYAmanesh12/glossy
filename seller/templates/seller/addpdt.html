@@ -1,0 +1,43 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="addpdt">
+        <h1>Add Product</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Product Name</td>
+                    <td><input type="text" name="name" id=""></td>
+                </tr>
+                <tr>
+                    <td>Product Price</td>
+                    <td><input type="number" name="price" id=""></td>
+                </tr>
+                <tr>
+                    <td>product image</td>
+                    <td><input type="file" name="image" id=""></td>
+                </tr>
+                <tr>
+                    <td>product category</td>
+                    <td><select name="category" id="">
+                        {% for i in cat %}
+                        <option value="{{i.id}}">{{i.name}}</option>
+                        {% endfor %}
+                    </select></td>
+                    
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit">Add Product</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
